@@ -1,0 +1,37 @@
+---
+title: "Beer Servings in Specific Countries"
+output: github_document
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+
+library(fivethirtyeight)
+```
+
+## Summary of Drinks Code
+
+
+```{r cars}
+summary(drinks)
+```
+
+## Beer Serving Plots
+
+Plot for beer servings in Angola, Argentina, Brazil, China, Italy, and the United Kingdom:
+
+```{r pressure, echo=FALSE}
+library(ggplot2)
+library(dplyr)
+
+drinks_type <- drinks %>% 
+  filter(country == "Angola" | country == "Argentina" | country == "Brazil" | 
+           country == "China" | country == "Italy" | country == "United Kingdom") %>% 
+  select(country, beer_servings)
+
+ggplot(drinks_type, aes(x = country, y = beer_servings)) + geom_col() +
+  labs(x = "Country",
+       y = "Beer Servings")
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
